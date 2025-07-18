@@ -1,0 +1,206 @@
+// src/data/albums.ts
+
+export type Album = {
+  id: string;
+  title: string;
+  date: string;
+  cover: string;
+  images: string[];
+};
+
+export const albums: Album[] = [
+  {
+    id: "bpv",
+    title: "Bilpleievelgernes Cars & Coffee",
+    date: "03. Mai, 2025",
+    cover: "/album/BPV-C&C.jpg",
+    images: [
+        "/album/bpv/MG/1.png",
+        "/album/bpv/Porsche911s/1.png",
+        "/album/bpv/BMWM4/1.png",
+        "/album/bpv/MG/2.png",
+        "/album/bpv/Porsche911s/2.png",
+        "/album/bpv/BMWM4/2.png",
+        "/album/bpv/MG/3.jpg",
+        "/album/bpv/Porsche911s/3.jpg",
+        "/album/bpv/BMWM4/3.jpg",
+        "/album/bpv/MG/4.png",
+        "/album/bpv/Porsche911s/4.png",
+        "/album/bpv/BMWM4/4.jpg",
+        "/album/bpv/MG/5.jpg",
+        "/album/bpv/Porsche911s/5.jpg",
+        "/album/bpv/BMWM4/5.jpg",
+        "/album/bpv/MG/6.jpg",
+        "/album/bpv/Porsche911s/6.png",
+        "/album/bpv/BMWM4/6.jpg",
+        "/album/bpv/MG/7.jpg",
+        "/album/bpv/Porsche911s/7.jpg",
+        "/album/bpv/BMWM4/7.png",
+        "/album/bpv/MG/8.png",
+        "/album/bpv/Porsche911s/8.png",
+        "/album/bpv/BMWM4/8.png",
+
+    ],
+  },
+  {
+    id: "alfa",
+    title: "Alfa Romeo Quadifoglio",
+    date: "14. April, 2025",
+    cover: "/album/AlfaQuadifoglio.png",
+    images: [
+        "/album/Alfa/1.png",
+        "/album/Alfa/2.png",
+        "/album/Alfa/3.png",
+        "/album/Alfa/4.jpg",
+        "/album/Alfa/5.png",
+        "/album/Alfa/6.jpg",
+        "/album/Alfa/7.jpg",
+        "/album/Alfa/8.jpg",
+        "/album/Alfa/9.jpg",
+        "/album/Alfa/10.jpg",
+        "/album/Alfa/11.png",
+    ],
+  },
+  {
+    id: "mache",
+    title: "Ford Mustang Mach-E GT",
+    date: "13. Mars, 2025",
+    cover: "/album/FordMachEGT_Poster.png",
+    images: [
+        "/album/MachE-GT/1.jpg",
+        "/album/MachE-GT/2.png",
+        "/album/MachE-GT/3.png",
+        "/album/MachE-GT/4.png",
+        "/album/MachE-GT/5.png",
+        "/album/MachE-GT/6.jpg",
+        "/album/MachE-GT/7.png",
+        "/album/MachE-GT/8.png",
+        "/album/MachE-GT/9.png",
+        "/album/MachE-GT/10.png",
+    ],
+  },
+  {
+    id: "lsMachE",
+    title: "Ford Mustang Mach-E GT - Lillestrøm",
+    date: "12. Januar, 2025",
+    cover: "/album/LS_MachE-GT.jpg",
+    images: [
+        "/album/LS_MachE/1.jpg",
+        "/album/LS_MachE/2.jpg",
+        "/album/LS_MachE/3.jpg",
+        "/album/LS_MachE/4.jpg",
+        "/album/LS_MachE/5.jpg",
+        "/album/LS_MachE/7.jpg",
+        "/album/LS_MachE/9.jpg",
+        "/album/LS_MachE/10.jpg",
+        "/album/LS_MachE/11.jpg",
+        "/album/LS_MachE/6.jpg",
+        "/album/LS_MachE/8.jpg",
+    ]
+  },
+  {
+    id: "bmw",
+    title: "byMEDHUS",
+    date: "11. Januar, 2025",
+    cover: "/album/byMEDHUS.png",
+    images: [
+        "/album/byMEDHUS/1.png",
+        "/album/byMEDHUS/2.jpg",
+        "/album/byMEDHUS/3.jpg",
+        "/album/byMEDHUS/4.jpg",
+        "/album/byMEDHUS/5.jpg",
+        "/album/byMEDHUS/6.jpg",
+        "/album/byMEDHUS/7.jpg",
+        "/album/byMEDHUS/8.jpg",
+        "/album/byMEDHUS/9.jpg",
+        "/album/byMEDHUS/10.jpg",
+        "/album/byMEDHUS/11.jpg",
+        "/album/byMEDHUS/12.jpg",
+        "/album/byMEDHUS/13.jpg",
+        "/album/byMEDHUS/14.jpg",
+        "/album/byMEDHUS/15.jpg",
+        "/album/byMEDHUS/16.png",
+        "/album/byMEDHUS/17.jpg",
+    ]
+  },
+  {
+    id: "xpnd",
+    title: "XPND Automotive",
+    date: "11. Januar, 2025",
+    cover: "/album/XPND.jpg",
+    images: [
+        "/album/XPNDAutomotive/1.jpg",
+        "/album/XPNDAutomotive/2.jpg",
+        "/album/XPNDAutomotive/3.jpg",
+        "/album/XPNDAutomotive/4.jpg",
+        "/album/XPNDAutomotive/5.jpg",
+        "/album/XPNDAutomotive/6.jpg",
+        "/album/XPNDAutomotive/7.jpg",
+        "/album/XPNDAutomotive/8.jpg",
+        "/album/XPNDAutomotive/9.jpg",
+        "/album/XPNDAutomotive/10.jpg",
+        "/album/XPNDAutomotive/11.jpg",
+    ]
+  },
+  {
+    id: "porscheCenterBillingstad",
+    title: "Porsche Center, Billingstad",
+    date: "11. Januar, 2025",
+    cover: "/album/BS_PorscheFull.jpg",
+    images: [
+        "/album/PorscheCenterBillingstad/1.jpg",
+        "/album/PorscheCenterBillingstad/2.jpg",
+        "/album/PorscheCenterBillingstad/3.jpg",
+        "/album/PorscheCenterBillingstad/4.jpg",
+        "/album/PorscheCenterBillingstad/5.jpg",
+        "/album/PorscheCenterBillingstad/6.jpg",
+        "/album/PorscheCenterBillingstad/7.jpg",
+        "/album/PorscheCenterBillingstad/8.jpg",
+        "/album/PorscheCenterBillingstad/9.jpg",
+        "/album/PorscheCenterBillingstad/10.jpg",
+        "/album/PorscheCenterBillingstad/11.jpg",
+        "/album/PorscheCenterBillingstad/12.jpg",
+        "/album/PorscheCenterBillingstad/13.jpg",
+    ]
+  },
+  {
+    id: "porscheCenterOslo",
+    title: "Porsche Center, Oslo",
+    date: "03. Desember, 2024",
+    cover: "/album/PorscheCenterRyen.jpg",
+    images: [
+        "/album/PorscheCenterOslo/1.jpg",
+        "/album/PorscheCenterOslo/2.jpg",
+        "/album/PorscheCenterOslo/4.jpg",
+        "/album/PorscheCenterOslo/3.jpg",
+        "/album/PorscheCenterOslo/5.jpg",
+        "/album/PorscheCenterOslo/6.jpg",
+        "/album/PorscheCenterOslo/7.jpg",
+        "/album/PorscheCenterOslo/8.jpg",
+        "/album/PorscheCenterOslo/11.jpg",
+        "/album/PorscheCenterOslo/10.jpg",
+        "/album/PorscheCenterOslo/9.jpg",
+        "/album/PorscheCenterOslo/12.jpg",
+    ]
+  },
+  {
+    id: "bmw316d",
+    title: "BMW 316D",
+    date: "23. November, 2024",
+    cover: "/album/bmw316d.jpg",
+    images: [
+        "/album/bmw316d/1.jpg",
+        "/album/bmw316d/2.jpg",
+        "/album/bmw316d/3.jpg",
+        "/album/bmw316d/4.jpg",
+        "/album/bmw316d/5.jpg",
+        "/album/bmw316d/7.jpg",
+        "/album/bmw316d/6.jpg",
+        "/album/bmw316d/8.jpg",
+    ]
+  },
+];
+
+export function getAlbumById(id: string): Album | undefined {
+  return albums.find((album) => album.id === id);
+}
