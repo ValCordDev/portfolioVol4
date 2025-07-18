@@ -1,21 +1,25 @@
+'use client'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
-const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'About', href: '#', current: false },
-  { name: 'Albums', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-]
+import { usePathname } from 'next/navigation'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+  const pathname = usePathname()
+
+  const navigation = [
+    { name: 'Home', href: '/', current: pathname === '/' },
+    { name: 'Om', href: '/om', current: pathname.startsWith('/om') },
+    { name: 'Album', href: '/album', current: pathname.startsWith('/album') },
+    { name: 'Kalender', href: '/kalender', current: pathname.startsWith('/kalender') },
+  ]
+
   return (
-    <Disclosure as="nav" className="bg-none">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <Disclosure as="nav" className="bg-none absolute w-full">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-2">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
@@ -30,7 +34,7 @@ export default function Navbar() {
             <div className="flex shrink-0 items-center">
               <img
                 alt="Devm.media logo"
-                src="/mainlogo.png"
+                src="/mainlogo.png" 
                 className="h-9 w-auto"
               />
             </div>
@@ -67,8 +71,7 @@ export default function Navbar() {
               <div>
                 <MenuButton className="relative flex rounded-lg bg-white text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 hover:cursor-pointer hover:bg-gray-900 hover:text-white duration-200 text-black font-semibold">
                   <span className="absolute -inset-1.5" />
-                  <span className="sr-only">Open user menu</span>
-                  <p className='px-4 py-2'>Contact</p>
+                  <p className='px-4 py-2'>Kontaktinfo</p>
                 </MenuButton>
               </div>
               <MenuItems
@@ -88,7 +91,7 @@ export default function Navbar() {
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                   >
-                    General Inquiry
+                    Kontaktinformasjon
                   </a>
                 </MenuItem>
               </MenuItems>
@@ -98,7 +101,7 @@ export default function Navbar() {
       </div>
 
       <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pt-2 pb-3">
+        <div className="space-y-1 px-2 pt-2 pb-3 bg-black/90">
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
