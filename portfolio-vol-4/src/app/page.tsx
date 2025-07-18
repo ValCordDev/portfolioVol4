@@ -6,10 +6,8 @@ import Footer from "./footer";
 export default function Home() {
   return (
     <div className="font-sans">
-      <Navbar />
       <Hero />
       <NyligArbeid />
-      <Footer />
     </div>
   );
 }

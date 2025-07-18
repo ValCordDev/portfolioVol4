@@ -7,11 +7,9 @@ import Timeline from "./vertical-timeline";
 export default function Om() {
     return (
         <div className="font-sans">
-            <Navbar />
             <OmHero />
             <Jobbverdi />
             <Timeline />
-            <Footer />
         </div>
     )
 }
