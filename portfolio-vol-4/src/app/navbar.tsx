@@ -1,6 +1,7 @@
 'use client'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 function classNames(...classes: string[]) {
@@ -32,10 +33,12 @@ export default function Navbar() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <img
+              <Image
                 alt="Devm.media logo"
                 src="/mainlogo.png" 
                 className="h-9 w-auto"
+                width={36}
+                height={36}
               />
             </div>
             <div className="hidden sm:ml-6 sm:block">

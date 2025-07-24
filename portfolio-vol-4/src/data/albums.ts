@@ -39,7 +39,6 @@ export const albums: Album[] = [
         "/album/bpv/MG/8.png",
         "/album/bpv/Porsche911s/8.png",
         "/album/bpv/BMWM4/8.png",
-
     ],
   },
   {
