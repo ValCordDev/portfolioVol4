@@ -11,6 +11,11 @@
   "dependencies": {
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
+    "@schedule-x/calendar": "^2.36.0",
+    "@schedule-x/events-service": "^2.36.0",
+    "@schedule-x/react": "^2.36.0",
+    "@schedule-x/theme-default": "^2.36.0",
+    "@schedule-x/theme-shadcn": "^2.36.0",
     "heroicons": "^2.2.0",
     "next": "15.4.1",
     "react": "19.1.0",

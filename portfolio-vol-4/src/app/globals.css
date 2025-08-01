@@ -1,8 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #232323;
   --foreground: #171717;
+  --sx-color-primary: #232323;
+  --sx-color-on-primary: #232323;
+  --sx-color-primary-container: #232323;
+  --sx-color-on-primary-container: #21005e;
+  --sx-color-secondary: #625b71;
+  --sx-color-on-secondary: #232323;
+  --sx-color-secondary-container: #232323;
+  --sx-color-on-secondary-container: #1e192b;
+  --sx-color-tertiary: #7d5260;
+  --sx-color-on-tertiary: #232323;
+  --sx-color-tertiary-container: #232323;
+  --sx-color-on-tertiary-container: #370b1e;
+  --sx-color-surface: #232323;
+  --sx-color-surface-dim: #232323;
+  --sx-color-surface-bright: #232323;
+  --sx-color-on-surface: #1c1b1f;
+  --sx-color-surface-container: #232323;
+  --sx-color-surface-container-low: #232323;
+  --sx-color-surface-container-high: #232323;
+  --sx-color-background: #232323;  /* deviation from material 3, which would be #FEF7FF */
+  --sx-color-on-background: #1c1b1f;
+  --sx-color-outline: #79747e;
+  --sx-color-outline-variant: #232323;
+  --sx-color-shadow: #000;
+  --sx-color-surface-tint: #6750a4;
+  --sx-color-neutral: var(--sx-color-outline);
+  --sx-color-neutral-variant: var(--sx-color-outline-variant);
+ 
+  /* internally defined colors, not belonging to the material design spec */
+  --sx-internal-color-gray-ripple-background: #232323;
+  --sx-internal-color-light-gray: #232323;
+  --sx-internal-color-text: #000;
 }
 
 @theme inline {
