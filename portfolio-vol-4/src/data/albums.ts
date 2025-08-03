@@ -10,6 +10,28 @@ export type Album = {
 
 export const albums: Album[] = [
   {
+    id: "bmw316dv2",
+    title: "BMW 316D - Revamped",
+    date: "01. August, 2025",
+    cover: "/album/BMW1.png",
+    images: [
+      "/album/bmw316dv2/bmw316dv2-1.png",
+      "/album/bmw316dv2/bmw316dv2-2.jpg",
+      "/album/bmw316dv2/bmw316dv2-3.jpg",
+      "/album/bmw316dv2/bmw316dv2-4.jpg",
+      "/album/bmw316dv2/bmw316dv2-5.jpg",
+      "/album/bmw316dv2/bmw316dv2-6.jpg",
+      "/album/bmw316dv2/bmw316dv2-7.jpg",
+      "/album/bmw316dv2/bmw316dv2-8.jpg",
+      "/album/bmw316dv2/bmw316dv2-9.jpg",
+      "/album/bmw316dv2/bmw316dv2-14.jpg",
+      "/album/bmw316dv2/bmw316dv2-11.jpg",
+      "/album/bmw316dv2/bmw316dv2-12.jpg",
+      "/album/bmw316dv2/bmw316dv2-10.jpg",
+      "/album/bmw316dv2/bmw316dv2-13.jpg",
+    ],
+  },
+  {
     id: "bpv",
     title: "Bilpleievelgernes Cars & Coffee",
     date: "03. Mai, 2025",

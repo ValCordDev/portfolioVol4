@@ -8,23 +8,27 @@ export default function HomePage() {
       <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">
         Mine album
       </h2>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-1 xl:grid-cols-2">
         {albums.map((album) => (
           <Link
             key={album.id}
             href={`/album/${album.id}`}
-            className="bg-neutral-900 rounded shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300"
+            className="relative flex flex-col text-white bg-neutral-900 shadow-md bg-clip-border rounded-xl w-96 hover:shadow-lg transition-shadow duration-300 group"
           >
-            <Image
-              src={album.cover}
-              alt={album.title}
-              width={400}
-              height={300}
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">{album.title}</h3>
-              <p className="text-sm text-gray-400">{album.date}</p>
+            <div className="relative mx-4 mt-4 overflow-hidden text-white bg-none bg-clip-border flex justify-center items-center rounded-xl h-96">
+              <Image
+                src={album.cover}
+                alt={album.title}
+                width={400}
+                height={300}
+                className="object-cover w-full h-full group-hover:scale-105 duration-300"
+              />
+            </div>
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-2">
+                <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-grayy-900">{album.title}</p>
+                <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-grayy-900">{album.date}</p>
+              </div>
             </div>
           </Link>
         ))}
