@@ -1,17 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function NyligArbeid() {
     return (
         <div className="w-full min-h-screen p-8 md:p-20 gap-5 md:gap-20 flex justify-center items-center flex-col">
-            <a 
+            <Link
             className="text-2xl flex flex-row gap-2 items-center duration-200 hover:font-medium w-fit"
-            href="#"
+            href="album"
             >
                 Nylig arbeid
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
-            </a>
+            </Link>
 
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-10">
                 <a className="relative hover:scale-100 scale-95 duration-200" href="#">
