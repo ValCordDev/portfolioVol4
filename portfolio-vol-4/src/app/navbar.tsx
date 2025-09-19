@@ -20,9 +20,9 @@ export default function Navbar() {
   ]
 
   return (
-    <Disclosure as="nav" className="bg-none w-full">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-2">
-        <div className="relative flex h-16 items-center justify-between">
+    <Disclosure as="nav" className="bg-none w-full top-0 z-50 fixed ">
+      <div className="mx-auto w-full px-2 sm:px-6 lg:px-8 py-2 absolute">
+        <div className="relative flex h-16 items-center justify-between max-w-7xl mx-auto">
           <div className="inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">

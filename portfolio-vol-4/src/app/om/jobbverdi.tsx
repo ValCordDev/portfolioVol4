@@ -1,3 +1,6 @@
+'use client'
+import { motion } from "motion/react"
+
 export default function Jobbverdi() {
 
     const posts = [
@@ -22,12 +25,18 @@ export default function Jobbverdi() {
 
     return (
         <div className="w-full min-h-screen flex justify-center items-center lg:p-20 pt-40 px-10 flex-col gap-10 text-center">
-            <a className="text-3xl flex flex-row gap-2 items-center duration-200 hover:font-medium w-fit hover:cursor-pointer">
+            <motion.a 
+                className="text-3xl flex flex-row gap-2 items-center duration-200 hover:font-medium w-fit hover:cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.2 }}
+                viewport={{ once: true, amount: 0.5 }}
+                whileInView={{ opacity: 1, y: 0 }}
+            >
                 Mine jobbverdier driver alt jeg gjør
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
-            </a>
+            </motion.a>
             <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {posts.map((post) => (
                 <article key={post.id} className="flex max-w-xl flex-col items-start justify-between bg-stone-900 shadow-2xl p-10 rounded-lg">

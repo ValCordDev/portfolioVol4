@@ -26,8 +26,8 @@ export default function HomePage() {
             </div>
             <div className="p-6">
               <div className="flex items-center justify-between mb-2">
-                <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-grayy-900">{album.title}</p>
-                <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-grayy-900">{album.date}</p>
+                <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 truncate">{album.title}</p>
+                <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 truncate">{album.date}</p>
               </div>
             </div>
           </Link>
