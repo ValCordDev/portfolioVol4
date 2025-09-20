@@ -20,8 +20,8 @@ export default function Navbar() {
   ]
 
   return (
-    <Disclosure as="nav" className="bg-none w-full top-0 z-50 fixed ">
-      <div className="mx-auto w-full px-2 sm:px-6 lg:px-8 py-2 absolute">
+    <Disclosure as="nav" className="backdrop-filter bg-clip-padding backdrop-blur w-full top-0 z-50 fixed">
+      <div className="mx-auto w-full px-2 sm:px-6 lg:px-8 py-2">
         <div className="relative flex h-16 items-center justify-between max-w-7xl mx-auto">
           <div className="inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
@@ -105,7 +105,7 @@ export default function Navbar() {
       </div>
 
       <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pt-2 pb-3 bg-black/95">
+        <div className="space-y-1 px-2 pt-2 pb-3 backdrop-filter bg-clip-padding backdrop-blur">
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
@@ -113,7 +113,7 @@ export default function Navbar() {
               href={item.href}
               aria-current={item.current ? 'page' : undefined}
               className={classNames(
-                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                item.current ? 'backdrop-filter bg-clip-padding backdrop-blur bg-gray-700/50 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                 'block rounded-md px-3 py-2 text-base font-medium',
               )}
             >

@@ -1,6 +1,7 @@
-import Link from "next/link";
+'use client'
 import Image from "next/image";
 import { albums } from "@/data/albums";
+import { motion } from "motion/react";
 
 export default function HomePage() {
   return (
@@ -10,10 +11,14 @@ export default function HomePage() {
       </h2>
       <div className="grid gap-4 md:grid-cols-1 xl:grid-cols-2">
         {albums.map((album) => (
-          <Link
+          <motion.a
             key={album.id}
             href={`/album/${album.id}`}
             className="relative flex flex-col text-white bg-neutral-900 shadow-md bg-clip-border rounded-xl w-96 hover:shadow-lg transition-shadow duration-300 group"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: album.idx * 0.2 }}
+            viewport={{ once: true, amount: 0.43 }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
             <div className="relative mx-4 mt-4 overflow-hidden text-white bg-none bg-clip-border flex justify-center items-center rounded-xl h-96">
               <Image
@@ -30,7 +35,7 @@ export default function HomePage() {
                 <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 truncate">{album.date}</p>
               </div>
             </div>
-          </Link>
+          </motion.a>
         ))}
       </div>
     </section>

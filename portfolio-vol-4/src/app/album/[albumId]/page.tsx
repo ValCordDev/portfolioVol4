@@ -4,6 +4,7 @@ import { getAlbumById } from "@/data/albums";
 import { notFound, useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 export default function AlbumPage() {
   const params = useParams();
@@ -15,7 +16,7 @@ export default function AlbumPage() {
     return <p className="text-gray-400">Ingen bilder tilgjengelig for dette albumet.</p>;
   }
   return (
-    <main className="text-white py-24 px-6 md:px-20 min-h-screen w-full flex justify-center items-center flex-col">
+    <main className="text-white py-24 px-6 md:px-20 min-h-screen w-full flex items-center flex-col">
       <Link
         className="text-lg flex flex-row gap-2 items-center duration-200 hover:scale-105"
         href="/album"
@@ -41,14 +42,21 @@ export default function AlbumPage() {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {album.images.map((src, idx) => (
-          <Image
+          <motion.div
             key={idx}
-            src={src}
-            alt={`${album.title} image ${idx + 1}`}
-            width={800}
-            height={600}
-            className="w-full h-auto rounded-lg shadow"
-          />
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <Image
+              src={src}
+              alt={`${album.title} image ${idx + 1}`}
+              width={800}
+              height={600}
+              className="w-full h-auto rounded-lg shadow"
+            />
+          </motion.div>
         ))}
       </div>
     </main>

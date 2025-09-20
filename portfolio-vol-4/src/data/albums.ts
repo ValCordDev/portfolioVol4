@@ -2,6 +2,7 @@
 
 export type Album = {
   id: string;
+  idx: number;
   title: string;
   date: string;
   cover: string;
@@ -11,6 +12,7 @@ export type Album = {
 export const albums: Album[] = [
   {
     id: "bmw316dv2",
+    idx: 1,
     title: "BMW 316D - Revamped",
     date: "01. August, 2025",
     cover: "/album/BMW1.png",
@@ -33,6 +35,7 @@ export const albums: Album[] = [
   },
   {
     id: "bpv",
+    idx: 2,
     title: "Bilpleievelgernes Cars & Coffee",
     date: "03. Mai, 2025",
     cover: "/album/BPV-C&C.jpg",
@@ -65,6 +68,7 @@ export const albums: Album[] = [
   },
   {
     id: "alfa",
+    idx: 1,
     title: "Alfa Romeo Quadifoglio",
     date: "14. April, 2025",
     cover: "/album/AlfaQuadifoglio.png",
@@ -84,6 +88,7 @@ export const albums: Album[] = [
   },
   {
     id: "mache",
+    idx: 2,
     title: "Ford Mustang Mach-E GT",
     date: "13. Mars, 2025",
     cover: "/album/FordMachEGT_Poster.png",
@@ -102,6 +107,7 @@ export const albums: Album[] = [
   },
   {
     id: "lsMachE",
+    idx: 1,
     title: "Ford Mustang Mach-E GT - Lillestrøm",
     date: "12. Januar, 2025",
     cover: "/album/LS_MachE-GT.jpg",
@@ -121,6 +127,7 @@ export const albums: Album[] = [
   },
   {
     id: "bmw",
+    idx: 2,
     title: "byMEDHUS",
     date: "11. Januar, 2025",
     cover: "/album/byMEDHUS.png",
@@ -146,6 +153,7 @@ export const albums: Album[] = [
   },
   {
     id: "xpnd",
+    idx: 1,
     title: "XPND Automotive",
     date: "11. Januar, 2025",
     cover: "/album/XPND.jpg",
@@ -165,6 +173,7 @@ export const albums: Album[] = [
   },
   {
     id: "porscheCenterBillingstad",
+    idx: 2,
     title: "Porsche Center, Billingstad",
     date: "11. Januar, 2025",
     cover: "/album/BS_PorscheFull.jpg",
@@ -186,6 +195,7 @@ export const albums: Album[] = [
   },
   {
     id: "porscheCenterOslo",
+    idx: 1,
     title: "Porsche Center, Oslo",
     date: "03. Desember, 2024",
     cover: "/album/PorscheCenterRyen.jpg",
@@ -206,6 +216,7 @@ export const albums: Album[] = [
   },
   {
     id: "bmw316d",
+    idx: 2,
     title: "BMW 316D",
     date: "23. November, 2024",
     cover: "/album/bmw316d.jpg",
@@ -222,6 +233,7 @@ export const albums: Album[] = [
   },
   {
     id: "dogyard",
+    idx: 1,
     title: "Dogyard Meet",
     date: "23. November, 2024",
     cover: "/album/dogyard24nov_cover.jpg",
@@ -238,6 +250,7 @@ export const albums: Album[] = [
   },
   {
     id: "dogyard14sep",
+    idx: 2,
     title: "Dogyard Meet",
     date: "14. September, 2024",
     cover: "/album/dogyard14sep.jpg",
