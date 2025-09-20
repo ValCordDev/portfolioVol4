@@ -1,5 +1,5 @@
 'use client'
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -20,7 +20,7 @@ export default function Navbar() {
   ]
 
   return (
-    <Disclosure as="nav" className="backdrop-filter bg-clip-padding backdrop-blur w-full top-0 z-50 fixed">
+    <Disclosure as="nav" className="backdrop-filter bg-clip-padding backdrop-blur bg-primary/50 w-full top-0 z-50 fixed">
       <div className="mx-auto w-full px-2 sm:px-6 lg:px-8 py-2">
         <div className="relative flex h-16 items-center justify-between max-w-7xl mx-auto">
           <div className="inset-y-0 left-0 flex items-center sm:hidden">
@@ -45,17 +45,17 @@ export default function Navbar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white duration-200',
+                      item.current ? 'bg-stone-900 text-white' : 'text-gray-300 hover:bg-stone-700 hover:text-white duration-200',
                       'rounded-md px-3 py-2 text-sm font-medium',
                     )}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -71,35 +71,12 @@ export default function Navbar() {
             </button> */}
 
             {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
               <div>
-                <MenuButton className="relative flex rounded-lg bg-white text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 hover:cursor-pointer hover:bg-gray-900 hover:text-white duration-200 text-black font-semibold">
+                <Link href="/booking" className='relative flex rounded-lg bg-white text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 hover:cursor-pointer hover:bg-gray-900 hover:text-white duration-200 text-black font-semibold'>
                   <span className="absolute -inset-1.5" />
-                  <p className='px-4 py-2'>Kontaktinfo</p>
-                </MenuButton>
+                  <p className='px-4 py-2'>Booking</p>
+                </Link>
               </div>
-              <MenuItems
-                transition
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-              >
-                <MenuItem>
-                  <Link
-                    href="booking"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Booking
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="koninfo"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Kontaktinformasjon
-                  </a>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
           </div>
         </div>
       </div>
@@ -113,7 +90,7 @@ export default function Navbar() {
               href={item.href}
               aria-current={item.current ? 'page' : undefined}
               className={classNames(
-                item.current ? 'backdrop-filter bg-clip-padding backdrop-blur bg-gray-700/50 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                item.current ? 'backdrop-filter bg-clip-padding backdrop-blur bg-0A0A0A/50 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                 'block rounded-md px-3 py-2 text-base font-medium',
               )}
             >

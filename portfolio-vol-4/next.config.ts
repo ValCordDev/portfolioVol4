@@ -10,5 +10,8 @@ module.exports = {
       'i.imgur.com',
     ],
   },
+  customColors: {
+    primary: '#0A0A0A',
+  },
 }
 

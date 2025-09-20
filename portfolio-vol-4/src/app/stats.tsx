@@ -35,7 +35,7 @@ export function Oppdrag() {
 
 export default function Stats() {
     return (
-        <section className="w-full py-12 flex sm:flex-row justify-center items-center sm:gap-80 gap-10 flex-col">
+        <section className="w-full py-12 flex flex-row justify-around items-center gap-10 px-20">
             <motion.div 
                 className="flex flex-col items-center gap-2"
                 initial={{ opacity: 0, y: 20 }}
@@ -44,7 +44,7 @@ export default function Stats() {
                 viewport={{ once: true, amount: 0.5 }}
             >
                 <Erfaring />
-                <p className="text-lg font-medium">Års erfaring</p>
+                <p className="text-lg font-medium text-center">Års erfaring</p>
             </motion.div>
             <motion.div 
                 className="flex flex-col items-center gap-2"
@@ -54,7 +54,7 @@ export default function Stats() {
                 viewport={{ once: true, amount: 0.5 }}
             >
                 <Oppdrag />
-                <p className="text-lg font-medium">Fullførte oppdrag</p>
+                <p className="text-lg font-medium text-center">Fullførte oppdrag</p>
             </motion.div>
         </section>
     )

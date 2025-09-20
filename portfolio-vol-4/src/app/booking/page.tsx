@@ -1,12 +1,23 @@
+'use client'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState } from 'react'
+import Toast from '@/app/booking/Toast'
+import {motion} from 'motion/react'
 
 
 export default function Booking() {
+    const [showToast, setShowToast] = useState(false)
+
+    const handleCopyEmail = () => {
+        navigator.clipboard.writeText('devm.media@gmail.com')
+        setShowToast(true)
+    }
+
     return (
         <div className="w-screen min-h-screen p-6 flex justify-center items-center">
             <div className="grid lg:grid-cols-5 grid-cols-1 justify-center items-center">
-                <div className="flex flex-col justify-center lg:col-span-2 items-center p-24 font-sans text-center gap-10">
+                <div className="flex flex-col justify-center lg:col-span-2 items-center sm:p-24 p-6 font-sans text-center gap-10">
                     <Image
                         src="/mainlogo.png"
                         alt="Booking Image"
@@ -14,7 +25,16 @@ export default function Booking() {
                         height={200}
                         className="rounded-lg shadow-lg object-cover"
                     />
-                    <h1 className="text-3xl font-bold">Booking</h1>
+                    <motion.h1 
+                        className="text-3xl font-bold"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        viewport={{ once: true }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                    >
+                        Booking
+                    </motion.h1>
                     <p className="text-md text-gray-400">For booking, foretrekkes det å kontakte meg gjennom Instagram, men er åpen til å bruke mail. Responstid gjennom mail er litt over 48 timer.</p>
                     <Link href="https://www.instagram.com/devm.media/" className="border-1 px-20 py-3 rounded-md hover:scale-105 duration-300 shadow-stone-800 shadow-none hover:shadow-2xl font-medium flex justify-center items-center gap-2 flex-row">
                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -22,6 +42,17 @@ export default function Booking() {
                         </svg>
                         Instagram
                     </Link>
+                    <button
+                        type="button"
+                        className="border-1 sm:px-20 px-10 py-3 rounded-md hover:scale-105 duration-300 shadow-stone-800 shadow-none hover:shadow-2xl font-medium flex justify-center items-center gap-2 flex-row hover:cursor-pointer"
+                        onClick={handleCopyEmail}
+                        aria-label="Kopier e-postadresse"
+                    >
+                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.5-.5a.5.5 0 0 0-.5.5v.379l8 5.333 8-5.333V6.5a.5.5 0 0 0-.5-.5h-15Zm15.5 2.621-7.646 5.1a1 1 0 0 1-1.108 0L3.5 8.621V17.5a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5V8.621Z"/>
+                        </svg>
+                        devm.media@gmail.com
+                    </button>
                 </div>
                 <div className="lg:ml-8 lg:col-span-3 flex justify-center items-center">
                     <Image
@@ -33,6 +64,11 @@ export default function Booking() {
                         />
                 </div>
             </div>
+            <Toast 
+                message="E-postadresse kopiert!" 
+                isVisible={showToast} 
+                onHide={() => setShowToast(false)} 
+            />
         </div>
     )
 }
