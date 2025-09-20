@@ -30,9 +30,9 @@ export default function HomePage() {
               />
             </div>
             <div className="p-6">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between flex-col mb-2">
                 <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 truncate">{album.title}</p>
-                <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 truncate">{album.date}</p>
+                <p className="block font-sans text-sm antialiased font-medium leading-relaxed text-blue-gray-900 truncate italic text-gray-400">{album.date}</p>
               </div>
             </div>
           </motion.a>

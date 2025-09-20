@@ -20,7 +20,7 @@ export default function Navbar() {
   ]
 
   return (
-    <Disclosure as="nav" className="backdrop-filter bg-clip-padding backdrop-blur bg-primary/50 w-full top-0 z-50 fixed">
+    <Disclosure as="nav" className="backdrop-filter bg-clip-padding backdrop-blur bg-primary/50 w-full top-0 z-50 fixed text-white">
       <div className="mx-auto w-full px-2 sm:px-6 lg:px-8 py-2">
         <div className="relative flex h-16 items-center justify-between max-w-7xl mx-auto">
           <div className="inset-y-0 left-0 flex items-center sm:hidden">
