@@ -23,8 +23,8 @@ export default function Navbar() {
     <Disclosure as="nav" className="backdrop-filter bg-clip-padding backdrop-blur bg-primary/50 w-full top-0 z-50 fixed text-white">
       <div className="mx-auto w-full px-2 sm:px-6 lg:px-8 py-2">
         <div className="relative flex h-16 items-center justify-between max-w-7xl mx-auto">
-          <div className="inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button*/}
+          {/* Mobile menu button - only visible on mobile */}
+          <div className="flex items-center lg:hidden w-12">
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
@@ -32,8 +32,10 @@ export default function Navbar() {
               <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
             </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex shrink-0 items-center">
+
+          {/* Logo - centered on mobile/tablet with proper spacing */}
+          <div className="flex-1 flex justify-center lg:justify-start lg:flex-none">
+            <div className="mx-4 lg:mx-0">
               <Image
                 alt="Devm.media logo"
                 src="/mainlogo.png" 
@@ -42,46 +44,38 @@ export default function Navbar() {
                 height={400}
               />
             </div>
-            <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
-                    className={classNames(
-                      item.current ? 'bg-stone-900 text-white' : 'text-gray-300 hover:bg-stone-700 hover:text-white duration-200',
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
+          </div>
+
+          {/* Desktop navigation */}
+          <div className="hidden lg:flex lg:ml-6">
+            <div className="flex space-x-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  aria-current={item.current ? 'page' : undefined}
+                  className={classNames(
+                    item.current ? 'bg-stone-900 text-white' : 'text-gray-300 hover:bg-stone-700 hover:text-white duration-200',
+                    'rounded-md px-3 py-2 text-sm font-medium',
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
           </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {/* <button
-              type="button"
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
-            </button> */}
 
-            {/* Profile dropdown */}
-              <div>
-                <Link href="/booking" className='relative flex rounded-lg bg-white text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 hover:cursor-pointer hover:bg-gray-900 hover:text-white duration-200 text-black font-semibold'>
-                  <span className="absolute -inset-1.5" />
-                  <p className='px-4 py-2'>Booking</p>
-                </Link>
-              </div>
+          {/* Booking button - always on the right */}
+          <div className="flex items-center justify-end w-auto lg:w-auto">
+            <Link href="/booking" className='relative flex rounded-lg bg-white text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 hover:cursor-pointer hover:bg-gray-900 hover:text-white duration-200 text-black font-semibold'>
+              <span className="absolute -inset-1.5" />
+              <p className='px-4 py-2'>Booking</p>
+            </Link>
           </div>
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
+      <DisclosurePanel className="lg:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3 backdrop-filter bg-clip-padding backdrop-blur">
           {navigation.map((item) => (
             <DisclosureButton
