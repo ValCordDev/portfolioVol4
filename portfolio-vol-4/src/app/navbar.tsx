@@ -36,13 +36,13 @@ export default function Navbar() {
           {/* Logo - centered on mobile/tablet with proper spacing */}
           <div className="flex-1 flex justify-center lg:justify-start lg:flex-none">
             <div className="mx-4 lg:mx-0">
-              <Image
+              <Link href="/"><Image
                 alt="Devm.media logo"
                 src="/mainlogo.png" 
                 className=""
                 width={150}
                 height={150}
-              />
+              /></Link>
             </div>
           </div>
 
