@@ -39,9 +39,9 @@ export default function Navbar() {
               <Image
                 alt="Devm.media logo"
                 src="/mainlogo.png" 
-                className="h-9 w-auto"
-                width={400}
-                height={400}
+                className=""
+                width={150}
+                height={150}
               />
             </div>
           </div>

@@ -17,13 +17,13 @@ export default function Booking() {
     return (
         <div className="w-screen min-h-screen p-6 flex justify-center items-center text-white bg-primary">
             <div className="grid lg:grid-cols-5 grid-cols-1 justify-center items-center">
-                <div className="flex flex-col justify-center lg:col-span-2 items-center sm:p-24 p-6 font-sans text-center gap-10">
+                <div className="flex flex-col justify-center lg:col-span-2 items-center sm:p-24 p-6 font-sans text-center gap-10 mt-12 lg:mt-0">
                     <Image
                         src="/mainlogo.png"
                         alt="Booking Image"
                         width={200}
                         height={200}
-                        className="rounded-lg shadow-lg object-cover"
+                        className="rounded-lg shadow-lg object-cover lg:mt-0"
                     />
                     <motion.h1 
                         className="text-3xl font-bold"
