@@ -30,7 +30,7 @@ export function Erfaring() {
 }
 
 export function Oppdrag() {
-    return <Counter to={20} duration={1.5} />
+    return <Counter to={10} duration={1.5} />
 }
 
 export default function Stats() {
@@ -53,7 +53,7 @@ export default function Stats() {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true, amount: 0.5 }}
             >
-                <Oppdrag />
+                <h1 className="text-5xl font-bold flex flex-row"><Oppdrag />+</h1>
                 <p className="text-lg font-medium text-center">Fullførte oppdrag</p>
             </motion.div>
         </section>

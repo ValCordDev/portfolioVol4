@@ -6,18 +6,18 @@ import { motion } from "motion/react";
 const nylig_arbeid = [
     {
         id: 1,
+        title: "BMW 316D Photoshoot",
+        date: "01.09.2025",
+        imageUrl: "/album/bmw316dv2/bmw316dv2-14.jpg",
+        link: "album/bmw316dv2"
+    },
+    {
+        id: 2,
         title: "Bilpleievelgernes Cars & Coffee",
         date: "03.05.2025",
         imageUrl: "https://i.imgur.com/eC2VtMb.jpeg",
         link: "bpv"
     },
-    {
-        id: 2,
-        title: "Alfa Romeo Quadifoglio Photoshoot",
-        date: "14.04.2025",
-        imageUrl: "https://i.imgur.com/8VGLxri.jpeg",
-        link: "alfa"
-    }
 ]
 
 export default function NyligArbeid() {
