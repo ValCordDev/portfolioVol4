@@ -16,7 +16,7 @@ const nylig_arbeid = [
         title: "Bilpleievelgernes Cars & Coffee",
         date: "03.05.2025",
         imageUrl: "https://i.imgur.com/eC2VtMb.jpeg",
-        link: "bpv"
+        link: "album/bpv"
     },
 ]
 
