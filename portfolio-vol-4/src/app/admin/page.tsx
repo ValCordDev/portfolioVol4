@@ -69,7 +69,7 @@ export default function AdminDashboard() {
 
   return (
     <ProtectedRoute requireAdmin>
-      <div className="min-h-screen bg-black text-white p-6 pt-20">
+      <div className="min-h-screen text-white p-6 pt-20">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
