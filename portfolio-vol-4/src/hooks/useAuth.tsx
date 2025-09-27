@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     try {
       if (!auth) {
-        throw new Error('Firebase authentication not initialized');
+        throw new Error('Firebase authentication not initialized. Please check your Firebase configuration in .env.local');
       }
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
