@@ -28,6 +28,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                   user?.email === 'admin@yourportfolio.com'; // fallback
 
   useEffect(() => {
+    if (!auth) {
+      setLoading(false);
+      return;
+    }
+    
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
@@ -38,6 +43,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
+      if (!auth) {
+        throw new Error('Firebase authentication not initialized');
+      }
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       const authError = error as AuthError;
@@ -47,6 +55,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     try {
+      if (!auth) {
+        throw new Error('Firebase authentication not initialized');
+      }
       await signOut(auth);
     } catch (error) {
       const authError = error as AuthError;

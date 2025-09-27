@@ -26,6 +26,10 @@ const EVENTS_COLLECTION = 'events';
 // Get all events
 export async function getAllEvents(): Promise<Event[]> {
   try {
+    if (!db) {
+      throw new Error('Firebase not initialized');
+    }
+    
     const q = query(collection(db, EVENTS_COLLECTION), orderBy('date', 'asc'));
     const querySnapshot = await getDocs(q);
     const events: Event[] = [];
@@ -48,6 +52,10 @@ export async function getAllEvents(): Promise<Event[]> {
 // Add a new event
 export async function addEvent(event: Omit<Event, 'id' | 'createdAt' | 'updatedAt'>): Promise<string> {
   try {
+    if (!db) {
+      throw new Error('Firebase not initialized');
+    }
+    
     const now = Timestamp.now();
     
     // Remove undefined fields to avoid Firebase errors
@@ -77,6 +85,10 @@ export async function addEvent(event: Omit<Event, 'id' | 'createdAt' | 'updatedA
 // Update an event
 export async function updateEvent(id: string, event: Partial<Event>): Promise<void> {
   try {
+    if (!db) {
+      throw new Error('Firebase not initialized');
+    }
+    
     const eventRef = doc(db, EVENTS_COLLECTION, id);
     
     // Remove undefined fields to avoid Firebase errors
@@ -100,6 +112,10 @@ export async function updateEvent(id: string, event: Partial<Event>): Promise<vo
 // Delete an event
 export async function deleteEvent(id: string): Promise<void> {
   try {
+    if (!db) {
+      throw new Error('Firebase not initialized');
+    }
+    
     const eventRef = doc(db, EVENTS_COLLECTION, id);
     await deleteDoc(eventRef);
   } catch (error) {
