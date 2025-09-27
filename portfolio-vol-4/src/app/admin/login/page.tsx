@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import FirebaseDebug from '@/components/FirebaseDebug';
+
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -87,8 +87,6 @@ export default function AdminLogin() {
             </button>
           </div>
         </form>
-        
-        <FirebaseDebug />
       </div>
     </div>
   );
