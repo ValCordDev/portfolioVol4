@@ -102,10 +102,7 @@ export default function EventList() {
                   {format(dateObj, "d")}
                 </div>
                 <span className="text-xs text-gray-400 uppercase mt-1">
-                  {format(dateObj, "EEE", { locale: nb })}, {format(dateObj, "y")}
-                </span>
-                <span className="text-xs text-gray-400 uppercase mt-1">
-                  
+                  {format(dateObj, "MMM", { locale: nb })} {format(dateObj, "y")}
                 </span>
               </div>
 
