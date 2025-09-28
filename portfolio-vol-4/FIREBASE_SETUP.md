@@ -29,6 +29,66 @@ This guide will help you set up Firebase for your portfolio events admin system.
 
 1. In the left sidebar, click "Firestore Database"
 2. Click "Create database"
+3. Choose "Start in production mode" (we'll add security rules next)
+4. Select a location for your database
+5. Click "Done"
+
+### Add Security Rules
+In Firestore Database > Rules, replace the default rules with:
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to all documents for authenticated users
+    match /{document=**} {
+      allow read: if request.auth != null;
+    }
+    
+    // Allow write access only to admin users
+    match /events/{document} {
+      allow write: if request.auth != null && 
+        request.auth.token.email in ['admin@yourportfolio.com', 'your-admin@email.com'];
+    }
+    
+    match /albums/{document} {
+      allow write: if request.auth != null && 
+        request.auth.token.email in ['admin@yourportfolio.com', 'your-admin@email.com'];
+    }
+  }
+}
+```
+
+## 5. Enable Storage (for image uploads)
+
+1. In the left sidebar, click "Storage"
+2. Click "Get started"
+3. Review the security rules and click "Next"
+4. Choose a location and click "Done"
+
+### Add Storage Security Rules
+In Storage > Rules, use:
+
+```javascript
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Allow read access to all files
+    match /{allPaths=**} {
+      allow read: if true;
+    }
+    
+    // Allow write access only to authenticated admin users
+    match /{allPaths=**} {
+      allow write: if request.auth != null && 
+        request.auth.token.email in ['admin@yourportfolio.com', 'your-admin@email.com'];
+    }
+  }
+}
+```
+
+## 4. Enable Firestore Database (continued)
+2. Click "Create database"
 3. Choose "Start in production mode" (recommended)
 4. Select a location close to you
 5. Click "Done"
@@ -137,29 +197,121 @@ npm run dev
 
 ## Troubleshooting
 
-### Common Issues:
+### Common Firebase Errors & Solutions:
 
-1. **"Firebase project not found"**
-   - Check your project ID in `.env.local`
-   - Make sure the Firebase project exists
+#### 1. **"Missing or insufficient permissions"**
+**Cause**: Firestore security rules blocking access
+**Solutions**:
+- Ensure you're logged in as an admin user
+- Check that your email matches the admin email in security rules
+- Verify security rules are properly deployed in Firestore console
+- Replace `'admin@yourportfolio.com'` in rules with your actual admin email
 
-2. **"Permission denied"**
-   - Verify Firestore security rules
-   - Ensure admin email matches the rules
+#### 2. **"ERR_BLOCKED_BY_CLIENT"**
+**Cause**: Ad blockers or browser security features
+**Solutions**:
+- Disable ad blockers (uBlock Origin, AdBlock Plus, etc.)
+- Test in incognito/private browsing mode
+- Try a different browser
+- Add your domain to ad blocker whitelist
 
-3. **"Auth domain not authorized"**
-   - Add your domain to authorized domains in Firebase Auth settings
+#### 3. **"Firebase not initialized"**
+**Cause**: Missing or incorrect environment variables
+**Solutions**:
+- Check that all `NEXT_PUBLIC_FIREBASE_*` variables are set in `.env.local`
+- Ensure values don't contain the fallback strings (`fallback-key`, etc.)
+- Restart your development server after adding variables
+- Verify your Firebase project configuration matches the variables
 
-4. **"Events not loading"**
-   - Check browser console for errors
-   - Verify Firebase configuration
-   - The app will fallback to local data if Firebase fails
+#### 4. **"Network request failed" / "Failed to fetch"**
+**Cause**: Connectivity or CORS issues
+**Solutions**:
+- Check your internet connection
+- Verify Firebase project is active (not deleted/suspended)
+- Check Firebase status page: https://status.firebase.google.com/
+- Add your domain to authorized domains in Firebase Auth settings
 
-### Support:
-If you encounter issues, check:
-1. Browser console for error messages
-2. Firebase console for project settings
-3. Network tab for failed requests
+#### 5. **"User does not have access to project"**
+**Cause**: Authentication or project access issues
+**Solutions**:
+- Ensure you're logged in with the correct Google account in Firebase console
+- Verify the Firebase project ID matches your environment variables
+- Check that your user has Owner/Editor role in the Firebase project
+
+#### 6. **"Failed to add album" during migration**
+**Cause**: Various data or permission issues
+**Solutions**:
+- Check the browser console for specific error messages
+- Ensure all required album fields are present (title, date, cover, images)
+- Verify image URLs are accessible
+- Check that Firestore security rules allow write access for albums
+
+### Debug Tools:
+
+#### Use the Firebase Debug Component
+1. Navigate to `/admin/migrate-albums`
+2. Check the "Firebase Debug Information" section at the top
+3. Verify all services show as "Connected"
+4. Ensure authentication status shows "Authenticated"
+
+#### Browser Console Logging
+The migration process includes detailed console logging:
+- `📝 Adding album...` - Starting album addition
+- `🔄 Uploading album data...` - Data being sent to Firebase
+- `✅ Album added successfully...` - Success confirmation
+- `❌ Error adding album...` - Error details
+
+### Environment Variables Checklist:
+
+Make sure you have ALL of these set correctly:
+
+**Development (.env.local):**
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=AIza...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789
+NEXT_PUBLIC_FIREBASE_APP_ID=1:123456789:web:abc123
+NEXT_PUBLIC_ADMIN_EMAIL=your-admin@email.com
+```
+
+**Production (Hosting Platform):**
+- Add the same variables to Vercel, Netlify, or your hosting platform
+- Do NOT use quotes around the values
+- Ensure there are no trailing spaces
+
+### Firebase Console Verification:
+
+1. **Authentication**: Go to Authentication > Users - verify your admin user exists
+2. **Firestore**: Go to Firestore Database - check that security rules are deployed
+3. **Storage**: Go to Storage - verify it's enabled and rules are set
+4. **Project Settings**: Verify your project ID and configuration values
+
+### Step-by-Step Debug Process:
+
+1. **Check Environment Variables**
+   - Open `/admin/migrate-albums`
+   - Look at the debug info - all should show "✓ Set"
+
+2. **Verify Firebase Connection**
+   - All services should show "Connected"
+
+3. **Check Authentication**
+   - Status should show "Authenticated"
+   - Your email should be displayed
+
+4. **Test Migration**
+   - Start with a small test (1-2 albums if possible)
+   - Check browser console for detailed error messages
+   - Note which specific albums fail and why
+
+5. **Contact Support**
+   - If issues persist, provide:
+     - Browser console screenshots
+     - Debug component status
+     - Specific error messages
+     - Your Firebase project ID (safe to share)
 
 ## File Structure
 

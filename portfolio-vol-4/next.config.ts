@@ -12,8 +12,37 @@ const nextConfig = {
     NEXT_PUBLIC_ADMIN_EMAIL: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
   },
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.googleapis.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*',
+        port: '',
+        pathname: '/**',
+      },
+    ],
     domains: [
+      'firebasestorage.googleapis.com',
       'i.imgur.com',
+      'storage.googleapis.com',
+      'lh3.googleusercontent.com',
     ],
   },
 }

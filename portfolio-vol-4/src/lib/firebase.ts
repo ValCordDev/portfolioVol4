@@ -2,6 +2,7 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // Firebase configuration with fallbacks for build time
 const firebaseConfig = {
@@ -51,17 +52,20 @@ const app = initializeFirebaseApp();
 // Initialize services conditionally
 let auth;
 let db;
+let storage;
 
 if (app) {
   try {
     auth = getAuth(app);
     db = getFirestore(app);
+    storage = getStorage(app);
   } catch (error) {
     console.error('Firebase services initialization error:', error);
     auth = undefined;
     db = undefined;
+    storage = undefined;
   }
 }
 
-export { auth, db };
+export { auth, db, storage };
 export default app;
