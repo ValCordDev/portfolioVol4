@@ -5,7 +5,6 @@ import {
   addDoc, 
   updateDoc, 
   deleteDoc, 
-  orderBy, 
   query,
   Timestamp 
 } from 'firebase/firestore';
@@ -36,7 +35,7 @@ export async function getAllAlbums(): Promise<Album[]> {
       throw new Error('Firebase not initialized');
     }
     
-    const q = query(collection(db, ALBUMS_COLLECTION), orderBy('date', 'desc'));
+    const q = query(collection(db, ALBUMS_COLLECTION));
     const querySnapshot = await getDocs(q);
     const albums: Album[] = [];
     

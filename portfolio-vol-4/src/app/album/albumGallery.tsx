@@ -4,6 +4,7 @@ import { getAllAlbums } from "@/lib/albums";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import SafeImage from "@/components/SafeImage";
+import { parseNorwegianDate } from "@/lib/dateUtils";
 
 type AlbumType = {
   id: string;
@@ -54,8 +55,8 @@ export default function HomePage() {
 
         // Sort by date (newest first)
         combinedAlbums.sort((a, b) => {
-          const dateA = new Date(a.date.replace(/\./g, '').trim());
-          const dateB = new Date(b.date.replace(/\./g, '').trim());
+          const dateA = parseNorwegianDate(a.date);
+          const dateB = parseNorwegianDate(b.date);
           return dateB.getTime() - dateA.getTime();
         });
         setAllAlbums(combinedAlbums);

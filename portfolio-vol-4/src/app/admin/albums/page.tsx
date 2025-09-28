@@ -10,8 +10,9 @@ import {
   EyeIcon,
   StarIcon
 } from '@heroicons/react/24/outline';
-import { getAllAlbums, deleteAlbum, Album } from '@/lib/albums';
+import { deleteAlbum, getAllAlbums, type Album } from '@/lib/albums';
 import { albums as fallbackAlbums } from '@/data/albums';
+import { parseNorwegianDate } from '@/lib/dateUtils';
 import Image from 'next/image';
 import Link from 'next/link';
 import AlbumForm from './AlbumForm';
@@ -31,13 +32,7 @@ export default function AlbumsAdmin() {
       .replace(/^-+|-+$/g, '');
   };
 
-  // Parse date string to Date object for sorting
-  const parseAlbumDate = (dateString: string): Date => {
-    // Handle various date formats like "01. August, 2025", "2025-08-01", etc.
-    const cleanDate = dateString.replace(/\./g, '').trim();
-    const parsed = new Date(cleanDate);
-    return isNaN(parsed.getTime()) ? new Date(0) : parsed;
-  };
+
 
   const loadAlbums = useCallback(async () => {
     try {
@@ -45,14 +40,14 @@ export default function AlbumsAdmin() {
       const fetchedAlbums = await getAllAlbums();
       // Sort by date (newest first)
       const sortedAlbums = [...fetchedAlbums].sort((a, b) => 
-        parseAlbumDate(b.date).getTime() - parseAlbumDate(a.date).getTime()
+        parseNorwegianDate(b.date).getTime() - parseNorwegianDate(a.date).getTime()
       );
       setAlbums(sortedAlbums);
     } catch (error) {
       console.error('Failed to load albums from Firebase:', error);
       // Fallback to local albums if Firebase fails
       const sortedFallback = [...fallbackAlbums].sort((a, b) => 
-        parseAlbumDate(b.date).getTime() - parseAlbumDate(a.date).getTime()
+        parseNorwegianDate(b.date).getTime() - parseNorwegianDate(a.date).getTime()
       );
       setAlbums(sortedFallback);
       setError('Using offline data');
