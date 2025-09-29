@@ -95,7 +95,7 @@ export default function HomePage() {
             href={`/album/${album.id}`}
             className="relative flex flex-col text-white bg-neutral-900 shadow-md bg-clip-border rounded-xl w-96 hover:shadow-lg transition-shadow duration-300 group"
             initial={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
+            transition={{ duration: 0.5, delay: index * 0.02 }}
             viewport={{ once: true, amount: 0.43 }}
             whileInView={{ opacity: 1, y: 0 }}
           >
