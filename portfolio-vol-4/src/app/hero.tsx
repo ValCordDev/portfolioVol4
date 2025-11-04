@@ -37,7 +37,7 @@ export default function Hero() {
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.01 }}
             >
-                <Image src="/pfp.webp" alt="pfp" className="grayscale rounded-2xl w-lg h-auto" width={640} height={640} />
+                <Image src="/mainPagepic.jpg" alt="pfp" className="rounded-2xl w-lg h-auto" width={640} height={640} />
             </motion.div>
         </main>
     )
