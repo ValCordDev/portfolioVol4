@@ -1,25 +1,34 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { format, parseISO } from 'date-fns';
-import { nb } from 'date-fns/locale';
-import Link from 'next/link';
-import { PlusIcon, PencilIcon, TrashIcon, CalendarIcon, PhotoIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
-import { getAllEvents, deleteEvent, Event } from '@/lib/events';
-import { useAuth } from '@/hooks/useAuth';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import EventForm from './EventForm';
-import AlbumsAdmin from './albums/page';
+import { useState, useEffect } from "react";
+import { format, parseISO } from "date-fns";
+import { nb } from "date-fns/locale";
+import Link from "next/link";
+import {
+  PlusIcon,
+  PencilIcon,
+  TrashIcon,
+  CalendarIcon,
+  PhotoIcon,
+  ArrowPathIcon,
+} from "@heroicons/react/24/outline";
+import { getAllEvents, deleteEvent, Event } from "@/lib/events";
+import { useAuth } from "@/hooks/useAuth";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import EventForm from "./EventForm";
+import AlbumsAdmin from "./albums/page";
+import { Clock, Database } from "lucide-react";
+import AvailabilityAdmin from "./availability/page";
 
-type TabType = 'events' | 'albums' | 'migrate';
+type TabType = "events" | "albums" | "migration" | "availability";
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<TabType>('events');
+  const [activeTab, setActiveTab] = useState<TabType>("events");
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const { logout, user } = useAuth();
 
   const loadEvents = async () => {
@@ -28,7 +37,7 @@ export default function AdminDashboard() {
       const fetchedEvents = await getAllEvents();
       setEvents(fetchedEvents);
     } catch (error) {
-      setError('Failed to load events');
+      setError("Failed to load events");
       console.error(error);
     } finally {
       setLoading(false);
@@ -40,7 +49,7 @@ export default function AdminDashboard() {
   }, []);
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Are you sure you want to delete this event?')) {
+    if (!window.confirm("Are you sure you want to delete this event?")) {
       return;
     }
 
@@ -48,7 +57,7 @@ export default function AdminDashboard() {
       await deleteEvent(id);
       await loadEvents(); // Refresh the list
     } catch (error) {
-      setError('Failed to delete event');
+      setError("Failed to delete event");
       console.error(error);
     }
   };
@@ -68,7 +77,7 @@ export default function AdminDashboard() {
     try {
       await logout();
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
   };
 
@@ -83,9 +92,7 @@ export default function AdminDashboard() {
               <p className="text-gray-400 mt-1">Manage your portfolio content</p>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-400">
-                Welcome, {user?.email}
-              </span>
+              <span className="text-sm text-gray-400">Welcome, {user?.email}</span>
               <button
                 onClick={handleLogout}
                 className="text-gray-400 hover:text-white transition"
@@ -96,50 +103,63 @@ export default function AdminDashboard() {
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex space-x-1 mb-8 bg-neutral-900 p-1 rounded-lg">
+          <div className="flex gap-4 mb-6 border-b border-neutral-800">
             <button
-              onClick={() => setActiveTab('events')}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition ${
-                activeTab === 'events'
-                  ? 'bg-yellow-500 text-black'
-                  : 'text-gray-400 hover:text-white hover:bg-neutral-800'
+              onClick={() => setActiveTab("events")}
+              className={`flex items-center gap-2 px-4 py-3 font-semibold transition ${
+                activeTab === "events"
+                  ? "text-yellow-500 border-b-2 border-yellow-500"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
               <CalendarIcon className="w-5 h-5" />
-              <span>Events</span>
+              Events
             </button>
             <button
-              onClick={() => setActiveTab('albums')}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition ${
-                activeTab === 'albums'
-                  ? 'bg-yellow-500 text-black'
-                  : 'text-gray-400 hover:text-white hover:bg-neutral-800'
+              onClick={() => setActiveTab("availability")}
+              className={`flex items-center gap-2 px-4 py-3 font-semibold transition ${
+                activeTab === "availability"
+                  ? "text-yellow-500 border-b-2 border-yellow-500"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              <Clock className="w-5 h-5" />
+              Availability
+            </button>
+            <button
+              onClick={() => setActiveTab("albums")}
+              className={`flex items-center gap-2 px-4 py-3 font-semibold transition ${
+                activeTab === "albums"
+                  ? "text-yellow-500 border-b-2 border-yellow-500"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
               <PhotoIcon className="w-5 h-5" />
-              <span>Albums</span>
+              Albums
             </button>
             <button
-              onClick={() => setActiveTab('migrate')}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition ${
-                activeTab === 'migrate'
-                  ? 'bg-yellow-500 text-black'
-                  : 'text-gray-400 hover:text-white hover:bg-neutral-800'
+              onClick={() => setActiveTab("migration")}
+              className={`flex items-center gap-2 px-4 py-3 font-semibold transition ${
+                activeTab === "migration"
+                  ? "text-yellow-500 border-b-2 border-yellow-500"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
-              <ArrowPathIcon className="w-5 h-5" />
-              <span>Migration</span>
+              <Database className="w-5 h-5" />
+              Migration
             </button>
           </div>
 
           {/* Tab Content */}
-          {activeTab === 'events' && (
+          {activeTab === "events" && (
             <div>
               {/* Events Header */}
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-semibold">Events Management</h2>
-                  <p className="text-gray-400 text-sm">Manage your photography events and calendar</p>
+                  <p className="text-gray-400 text-sm">
+                    Manage your photography events and calendar
+                  </p>
                 </div>
                 <button
                   onClick={() => setShowForm(true)}
@@ -172,7 +192,9 @@ export default function AdminDashboard() {
                     <CalendarIcon className="w-8 h-8 text-green-500" />
                     <div className="ml-4">
                       <div className="text-2xl font-bold">
-                        {events.filter(event => new Date(event.date) >= new Date()).length}
+                        {events.filter(
+                          (event) => new Date(event.date) >= new Date()
+                        ).length}
                       </div>
                       <div className="text-gray-400 text-sm">Upcoming</div>
                     </div>
@@ -183,7 +205,9 @@ export default function AdminDashboard() {
                     <CalendarIcon className="w-8 h-8 text-blue-500" />
                     <div className="ml-4">
                       <div className="text-2xl font-bold">
-                        {events.filter(event => new Date(event.date) < new Date()).length}
+                        {events.filter(
+                          (event) => new Date(event.date) < new Date()
+                        ).length}
                       </div>
                       <div className="text-gray-400 text-sm">Past</div>
                     </div>
@@ -216,25 +240,26 @@ export default function AdminDashboard() {
                     {events.map((event) => {
                       const eventDate = parseISO(event.date);
                       const isUpcoming = eventDate >= new Date();
-                      
+
                       return (
-                        <div key={event.id} className="p-6 hover:bg-neutral-800/50 transition">
+                        <div
+                          key={event.id}
+                          className="p-6 hover:bg-neutral-800/50 transition"
+                        >
                           <div className="flex items-center justify-between">
                             <div>
                               <h4 className="font-medium text-white">{event.title}</h4>
                               <div className="flex items-center space-x-4 mt-2 text-sm text-gray-400">
-                                <span>
-                                  {format(eventDate, 'PPP', { locale: nb })}
-                                </span>
-                                {event.company && (
-                                  <span>🏢 {event.company}</span>
-                                )}
-                                <span className={`px-2 py-1 rounded-full text-xs ${
-                                  isUpcoming 
-                                    ? 'bg-green-500/20 text-green-400' 
-                                    : 'bg-gray-500/20 text-gray-400'
-                                }`}>
-                                  {isUpcoming ? 'Upcoming' : 'Past'}
+                                <span>{format(eventDate, "PPP", { locale: nb })}</span>
+                                {event.company && <span>🏢 {event.company}</span>}
+                                <span
+                                  className={`px-2 py-1 rounded-full text-xs ${
+                                    isUpcoming
+                                      ? "bg-green-500/20 text-green-400"
+                                      : "bg-gray-500/20 text-gray-400"
+                                  }`}
+                                >
+                                  {isUpcoming ? "Upcoming" : "Past"}
                                 </span>
                               </div>
                             </div>
@@ -262,18 +287,19 @@ export default function AdminDashboard() {
             </div>
           )}
 
-          {activeTab === 'albums' && (
-            <AlbumsAdmin />
-          )}
+          {activeTab === "albums" && <AlbumsAdmin />}
 
-          {activeTab === 'migrate' && (
+          {activeTab === "migration" && (
             <div>
               <h2 className="text-xl font-semibold mb-6">Data Migration</h2>
               <div className="bg-neutral-900 rounded-xl p-6">
-                <h3 className="text-lg font-medium mb-4">Migrate Local Albums to Firebase</h3>
+                <h3 className="text-lg font-medium mb-4">
+                  Migrate Local Albums to Firebase
+                </h3>
                 <p className="text-gray-400 mb-6">
-                  Migrate your existing local album data to Firebase Firestore. 
-                  This is a one-time setup process that should be run after configuring Firebase.
+                  Migrate your existing local album data to Firebase Firestore. This
+                  is a one-time setup process that should be run after configuring
+                  Firebase.
                 </p>
                 <Link
                   href="/admin/migrate-albums"
@@ -286,13 +312,10 @@ export default function AdminDashboard() {
             </div>
           )}
 
+          {activeTab === "availability" && <AvailabilityAdmin />}
+
           {/* Event Form Modal */}
-          {showForm && (
-            <EventForm
-              event={editingEvent}
-              onClose={handleFormClose}
-            />
-          )}
+          {showForm && <EventForm event={editingEvent} onClose={handleFormClose} />}
         </div>
       </div>
     </ProtectedRoute>

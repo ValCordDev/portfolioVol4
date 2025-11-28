@@ -1,71 +1,28 @@
 // Firebase configuration
-import { initializeApp, getApps, getApp } from 'firebase/app';
+import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 // Firebase configuration with fallbacks for build time
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'fallback-key',
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'fallback.firebaseapp.com',
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'fallback-project',
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'fallback.appspot.com',
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '123456789',
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || 'fallback-app-id'
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Function to check if we have real Firebase config
-function hasValidConfig(): boolean {
-  return !!(
-    process.env.NEXT_PUBLIC_FIREBASE_API_KEY && 
-    process.env.NEXT_PUBLIC_FIREBASE_API_KEY !== 'fallback-key' &&
-    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID &&
-    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID !== 'fallback-project'
-  );
-}
-
-// Function to initialize Firebase
-function initializeFirebaseApp() {
-  if (typeof window === 'undefined') return null;
-  if (!hasValidConfig()) {
-    console.warn('Firebase: No valid configuration found. Using fallback mode.');
-    return null;
-  }
-
-  try {
-    // Check if app is already initialized
-    if (getApps().length > 0) {
-      return getApp();
-    }
-    
-    // Initialize new app
-    return initializeApp(firebaseConfig);
-  } catch (error) {
-    console.error('Firebase initialization error:', error);
-    return null;
-  }
-}
-
 // Initialize Firebase
-const app = initializeFirebaseApp();
-
-// Initialize services conditionally
-let auth;
-let db;
-let storage;
-
-if (app) {
-  try {
-    auth = getAuth(app);
-    db = getFirestore(app);
-    storage = getStorage(app);
-  } catch (error) {
-    console.error('Firebase services initialization error:', error);
-    auth = undefined;
-    db = undefined;
-    storage = undefined;
-  }
+let app;
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApps()[0];
 }
 
-export { auth, db, storage };
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 export default app;
